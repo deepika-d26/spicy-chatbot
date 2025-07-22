@@ -606,6 +606,9 @@
             }
         }
     </style>
+    <!-- Bot Framework Web Chat SDK -->
+<script src="https://cdn.botframework.com/botframework-webchat/latest/webchat.js"></script>
+
 </head>
 <body>
     <div class="spicy-animation" id="spicy-animation"></div>
@@ -630,7 +633,8 @@
             <button class="lang-btn" data-lang="kn">ಕನ್ನಡ</button>
         </div>
         
-        <div class="chat-messages" id="chat-messages"></div>
+       <div id="webchat" style="flex: 1; height: 100%;"></div>
+
         
         <div class="chat-input">
             <button id="voice-btn" title="Voice Input">
@@ -652,5 +656,20 @@
     </div>
 
     <script src="chatbot.js"></script>
+    <script>
+  const styleOptions = {
+    botAvatarInitials: 'BOT',
+    userAvatarInitials: 'YOU',
+    backgroundColor: 'transparent'
+  };
+
+  window.WebChat.renderWebChat({
+    directLine: window.WebChat.createDirectLine({
+      token: 'zafPF0mgt2FtM9nALq3pzbSyLRfldZqYnKnWkssqzmmQCtO6jwZuJQQJ99BGAC77bzfAArohAAABAZBSLfl9.GAZwsWdKeaRjooMH9QPUHC5JO2e5GWlNeIYoOFhV99gzD3PRHCCRJQQJ99BGAC77bzfAArohAAABAZBSvzpX'  // ⛔️ REPLACE THIS!
+    }),
+    styleOptions
+  }, document.getElementById('webchat'));
+</script>
+
 </body>
 </html>
