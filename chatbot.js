@@ -1,5 +1,5 @@
 // Configuration - UPDATE THIS TO YOUR AZURE FUNCTION URL
-const AZURE_FUNCTION_URL = 'https://your-azure-function.azurewebsites.net/api/HttpTrigger1';
+const AZURE_FUNCTION_URL = 'https://spicychatbotfunction-bbfydebcfcf2b6er.centralindia-01.azurewebsites.net/api/HttpTrigger1deepi?';
 const BOT_SECRET_KEY = "CBrDk2c3vJHhkemq5zqAL16mBeMxfnHtqt149b3xzDeER4pK00JaJQQJ99BGACGhslBAArohAAABAZBS1HIj.9wV5SZIZ9QRw28dGUrPmfF048FxRwKCwmQGaU4C28WHCMMdtAY9AJQQJ99BGAC77bzfAArohAAABAZBS1u0y";
 const BOT_NAME = "SpicyFoodBot";
 
