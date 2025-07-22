@@ -1,30 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-   
-  <title>Spicy Chatbot</title>
-  <script src="https://cdn.botframework.com/botframework-webchat/latest/webchat.js"></script>
-</head>
-<body>
-  <div id="webchat" role="main"></div>
-  <script>
-    const styleOptions = {
-      botAvatarInitials: 'SF',
-      userAvatarInitials: 'You'
-    };
-
-    window.WebChat.renderWebChat({
-      directLine: window.WebChat.createDirectLine({
-        token: 'zafPF0mgt2FtM9nALq3pzbSyLRfldZqYnKnWkssqzmmQCtO6jwZuJQQJ99BGAC77bzfAArohAAABAZBSLfl9.GAZwsWdKeaRjooMH9QPUHC5JO2e5GWlNeIYoOFhV99gzD3PRHCCRJQQJ99BGAC77bzfAArohAAABAZBSvzpX'
-      }),
-      styleOptions
-    }, document.getElementById('webchat'));
-  
-
-
-    <meta charset="UTF-8">
+   <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Spicy Food Chatbot</title>
+    <script src="https://cdn.botframework.com/botframework-webchat/latest/webchat.js"></script>
+
+
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -629,6 +611,20 @@
     </style>
 </head>
 <body>
+   <div id="webchat" role="main"></div>
+
+  <script>
+    const styleOptions = {
+      botAvatarInitials: 'SF',
+      userAvatarInitials: 'You'
+    };
+
+    window.WebChat.renderWebChat({
+      directLine: window.WebChat.createDirectLine({
+        token: 'zafPF0mgt2FtM9nALq3pzbSyLRfldZqYnKnWkssqzmmQCtO6jwZuJQQJ99BGAC77bzfAArohAAABAZBSLfl9.GAZwsWdKeaRjooMH9QPUHC5JO2e5GWlNeIYoOFhV99gzD3PRHCCRJQQJ99BGAC77bzfAArohAAABAZBSvzpX'
+      }),
+      styleOptions
+    }, document.getElementById('webchat'));
     <div class="spicy-animation" id="spicy-animation"></div>
     
     <div class="chat-container">
