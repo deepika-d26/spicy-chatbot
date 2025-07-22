@@ -1,6 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+   
+  <title>Spicy Chatbot</title>
+  <script src="https://cdn.botframework.com/botframework-webchat/latest/webchat.js"></script>
+</head>
+<body>
+  <div id="webchat" role="main"></div>
+  <script>
+    const styleOptions = {
+      botAvatarInitials: 'SF',
+      userAvatarInitials: 'You'
+    };
+
+    window.WebChat.renderWebChat({
+      directLine: window.WebChat.createDirectLine({
+        token: 'zafPF0mgt2FtM9nALq3pzbSyLRfldZqYnKnWkssqzmmQCtO6jwZuJQQJ99BGAC77bzfAArohAAABAZBSLfl9.GAZwsWdKeaRjooMH9QPUHC5JO2e5GWlNeIYoOFhV99gzD3PRHCCRJQQJ99BGAC77bzfAArohAAABAZBSvzpX'
+      }),
+      styleOptions
+    }, document.getElementById('webchat'));
+  
+
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Spicy Food Chatbot</title>
