@@ -1,4 +1,28 @@
 <!DOCTYPE html>
+
+<html>
+<head>
+  <title>Spicy Chatbot</title>
+  <script src="https://cdn.botframework.com/botframework-webchat/latest/webchat.js"></script>
+</head>
+<body>
+  <div id="webchat" role="main"></div>
+  <script>
+    const styleOptions = {
+      botAvatarImage: 'https://cdn-icons-png.flaticon.com/512/4712/4712109.png',
+      botAvatarInitials: 'SF',
+      userAvatarInitials: 'You',
+    };
+
+    window.WebChat.renderWebChat({
+      directLine: window.WebChat.createDirectLine({
+        token: 'zafPF0mgt2FtM9nALq3pzbSyLRfldZqYnKnWkssqzmmQCtO6jwZuJQQJ99BGAC77bzfAArohAAABAZBSLfl9.GAZwsWdKeaRjooMH9QPUHC5JO2e5GWlNeIYoOFhV99gzD3PRHCCRJQQJ99BGAC77bzfAArohAAABAZBSvzpXT'
+      }),
+      styleOptions
+    }, document.getElementById('webchat'));
+  </script>
+
+
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -606,16 +630,11 @@
             }
         }
     </style>
-    <!-- Bot Framework Web Chat SDK -->
-<script src="https://cdn.botframework.com/botframework-webchat/latest/webchat.js"></script>
-
 </head>
 <body>
-    
+    <div class="spicy-animation" id="spicy-animation"></div>
     
     <div class="chat-container">
-        <div class="chat-header">Spicy Food Order Assistant 🌶</div>
-
         <div class="chat-header">
             Spicy Food Order Assistant 🌶
             <button id="clear-chat" title="Clear Chat">
@@ -635,8 +654,7 @@
             <button class="lang-btn" data-lang="kn">ಕನ್ನಡ</button>
         </div>
         
-       <div id="webchat" style="flex: 1; height: 100%;"></div>
-
+        <div class="chat-messages" id="chat-messages"></div>
         
         <div class="chat-input">
             <button id="voice-btn" title="Voice Input">
@@ -658,20 +676,5 @@
     </div>
 
     <script src="chatbot.js"></script>
-    <script>
-  const styleOptions = {
-    botAvatarInitials: 'BOT',
-    userAvatarInitials: 'YOU',
-    backgroundColor: 'transparent'
-  };
-
-  window.WebChat.renderWebChat({
-    directLine: window.WebChat.createDirectLine({
-      token: 'zafPF0mgt2FtM9nALq3pzbSyLRfldZqYnKnWkssqzmmQCtO6jwZuJQQJ99BGAC77bzfAArohAAABAZBSLfl9.GAZwsWdKeaRjooMH9QPUHC5JO2e5GWlNeIYoOFhV99gzD3PRHCCRJQQJ99BGAC77bzfAArohAAABAZBSvzpX'  // ⛔ REPLACE THIS!
-    }),
-    styleOptions
-  }, document.getElementById('webchat'));
-</script>
-
 </body>
 </html>
