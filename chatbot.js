@@ -1,11 +1,11 @@
 // Firebase Configuration - ADD YOUR OWN CONFIG HERE
 const firebaseConfig = {
-  apiKey: "YOUR_API_KEY",
-  authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
-  projectId: "YOUR_PROJECT_ID",
-  storageBucket: "YOUR_PROJECT_ID.appspot.com",
-  messagingSenderId: "YOUR_SENDER_ID",
-  appId: "YOUR_APP_ID"
+  apiKey: "AIzaSyDYmGp9Mha7CzCC-kFIeIqGy1_lscZMZOs",
+  authDomain: "spicy-food-order-assistant.firebaseapp.com",
+  projectId: "spicy-food-order-assistant",
+  storageBucket: "spicy-food-order-assistant.firebasestorage.app",
+  messagingSenderId: "894408741484",
+  appId: "1:894408741484:web:130641154b60f9376e7e49"
 };
 
 // Initialize Firebase
@@ -995,3 +995,4 @@ function modifyOrder(command) {
 
     return getTranslation('modifyError', lang);
 }
+
