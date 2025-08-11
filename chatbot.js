@@ -1,17 +1,3 @@
-// Firebase Configuration - ADD YOUR OWN CONFIG HERE
-const firebaseConfig = {
-  apiKey: "AIzaSyDYmGp9Mha7CzCC-kFIeIqGy1_lscZMZOs",
-  authDomain: "spicy-food-order-assistant.firebaseapp.com",
-  projectId: "spicy-food-order-assistant",
-  storageBucket: "spicy-food-order-assistant.firebasestorage.app",
-  messagingSenderId: "894408741484",
-  appId: "1:894408741484:web:130641154b60f9376e7e49"
-};
-
-// Initialize Firebase
-firebase.initializeApp(firebaseConfig);
-const db = firebase.firestore();
-
 // Configuration - UPDATE THIS TO YOUR AZURE FUNCTION URL
 const AZURE_FUNCTION_URL = 'https://spicychatbotfunction-bbfydebcfcf2b6er.centralindia-01.azurewebsites.net/api/HttpTrigger1deepi?';
 const BOT_SECRET_KEY = "CBrDk2c3vJHhkemq5zqAL16mBeMxfnHtqt149b3xzDeER4pK00JaJQQJ99BGACGhslBAArohAAABAZBS1HIj.9wV5SZIZ9QRw28dGUrPmfF048FxRwKCwmQGaU4C28WHCMMdtAY9AJQQJ99BGAC77bzfAArohAAABAZBS1u0y";
@@ -152,8 +138,7 @@ const translations = {
         clearChatConfirm: "Are you sure you want to clear the chat?",
         chatCleared: "Chat cleared. How can I help you today?",
         send: "Send",
-        spicyLevel: "Spice Level:",
-        dataSaved: "Your order has been saved successfully!"
+        spicyLevel: "Spice Level:"
     },
     hi: {
         welcome: "स्पाइसी डिलाइट्स में आपका स्वागत है! 🔥 कृपया शुरू करने के लिए अपना नाम बताएं।",
@@ -200,8 +185,7 @@ const translations = {
         clearChatConfirm: "क्या आप वाकई चैट साफ़ करना चाहते हैं?",
         chatCleared: "चैट साफ़ हो गई। आज मैं आपकी कैसे मदद कर सकता हूँ?",
         send: "भेजें",
-        spicyLevel: "मसाले का स्तर:",
-        dataSaved: "आपका ऑर्डर सफलतापूर्वक सहेजा गया है!"
+        spicyLevel: "मसाले का स्तर:"
     },
     es: {
         welcome: "¡Bienvenido a Spicy Delights! 🔥 Por favor, dinos tu nombre para comenzar.",
@@ -248,8 +232,7 @@ const translations = {
         clearChatConfirm: "¿Estás seguro de que quieres borrar el chat?",
         chatCleared: "Chat borrado. ¿Cómo puedo ayudarte hoy?",
         send: "Enviar",
-        spicyLevel: "Nivel de picante:",
-        dataSaved: "¡Tu pedido ha sido guardado exitosamente!"
+        spicyLevel: "Nivel de picante:"
     },
     kn: {
         welcome: "ಸ್ಪೈಸಿ ಡಿಲೈಟ್ಸ್‌ಗೆ ಸುಸ್ವಾಗತ! 🔥 ಪ್ರಾರಂಭಿಸಲು ದಯವಿಟ್ಟು ನಿಮ್ಮ ಹೆಸರನ್ನು ಹೇಳಿ.",
@@ -296,8 +279,7 @@ const translations = {
         clearChatConfirm: "ನೀವು ಚಾಟ್ ಅನ್ನು ಸ್ಪಷ್ಟವಾಗಿ ಮಾಡಲು ಖಚಿತವಾಗಿ ಬಯಸುವಿರಾ?",
         chatCleared: "ಚಾಟ್ ಸ್ಪಷ್ಟವಾಗಿದೆ. ನಾನು ಇಂದು ನಿಮಗೆ ಹೇಗೆ ಸಹಾಯ ಮಾಡಬಹುದು?",
         send: "ಕಳುಹಿಸು",
-        spicyLevel: "ಮಸಾಲೆ ಮಟ್ಟ:",
-        dataSaved: "ನಿಮ್ಮ ಆರ್ಡರ್ ಯಶಸ್ವಿಯಾಗಿ ಉಳಿಸಲ್ಪಟ್ಟಿದೆ!"
+        spicyLevel: "ಮಸಾಲೆ ಮಟ್ಟ:"
     }
 };
 
@@ -318,9 +300,7 @@ let conversationState = {
     language: 'en',
     scheduledTime: null,
     recurringOrder: false,
-    paymentMethod: null,
-    specialRequests: [],
-    timestamp: null
+    paymentMethod: null
 };
 
 // Initialize voice recognition
@@ -386,9 +366,7 @@ clearChatBtn.addEventListener('click', () => {
             language: conversationState.language,
             scheduledTime: null,
             recurringOrder: false,
-            paymentMethod: null,
-            specialRequests: [],
-            timestamp: null
+            paymentMethod: null
         };
         addBotMessage(getTranslation('chatCleared', conversationState.language));
         setTimeout(() => {
@@ -403,10 +381,10 @@ function createSpicyAnimation() {
         setTimeout(() => {
             const chili = document.createElement('div');
             chili.className = 'chili-pepper';
-            chili.style.left = `${Math.random() * 100}%`;
-            chili.style.animationDuration = `${5 + Math.random() * 5}s`;
+            chili.style.left = ${Math.random() * 100}%;
+            chili.style.animationDuration = ${5 + Math.random() * 5}s;
             chili.style.opacity = Math.random() * 0.7 + 0.3;
-            chili.style.width = `${20 + Math.random() * 20}px`;
+            chili.style.width = ${20 + Math.random() * 20}px;
             chili.style.height = chili.style.width;
             spicyAnimation.appendChild(chili);
             
@@ -423,11 +401,11 @@ function createConfetti() {
     for (let i = 0; i < 50; i++) {
         const confetti = document.createElement('div');
         confetti.className = 'confetti';
-        confetti.style.left = `${Math.random() * 100}%`;
-        confetti.style.backgroundColor = `hsl(${Math.random() * 60 + 0}, 100%, 50%)`;
-        confetti.style.animationDuration = `${1 + Math.random() * 2}s`;
-        confetti.style.animationDelay = `${Math.random() * 0.5}s`;
-        confetti.style.width = `${5 + Math.random() * 10}px`;
+        confetti.style.left = ${Math.random() * 100}%;
+        confetti.style.backgroundColor = hsl(${Math.random() * 60 + 0}, 100%, 50%);
+        confetti.style.animationDuration = ${1 + Math.random() * 2}s;
+        confetti.style.animationDelay = ${Math.random() * 0.5}s;
+        confetti.style.width = ${5 + Math.random() * 10}px;
         confetti.style.height = confetti.style.width;
         spicyAnimation.appendChild(confetti);
         
@@ -449,31 +427,6 @@ setTimeout(() => {
     createSpicyAnimation();
     setInterval(createSpicyAnimation, 10000);
 }, 500);
-
-// Save order to Firebase
-async function saveOrderToFirebase() {
-    try {
-        conversationState.timestamp = firebase.firestore.FieldValue.serverTimestamp();
-        
-        await db.collection('orders').add({
-            ...conversationState,
-            totalAmount: calculateTotal(),
-            status: 'completed'
-        });
-        
-        addBotMessage(getTranslation('dataSaved', conversationState.language));
-    } catch (error) {
-        console.error('Error saving order to Firebase:', error);
-        addBotMessage(getTranslation('error', conversationState.language));
-    }
-}
-
-// Calculate total order amount
-function calculateTotal() {
-    return conversationState.orders.reduce((total, item) => {
-        return total + (item.price * item.quantity);
-    }, 0);
-}
 
 // Main message processing
 async function sendMessage() {
@@ -534,9 +487,7 @@ function processMessageLocally(message) {
             language: conversationState.language,
             scheduledTime: null,
             recurringOrder: false,
-            paymentMethod: null,
-            specialRequests: [],
-            timestamp: null
+            paymentMethod: null
         };
         return [getTranslation('chatCleared', lang)];
     }
@@ -545,10 +496,10 @@ function processMessageLocally(message) {
     if (text === 'help') {
         return [
             getTranslation('whatNext', lang),
-            `- ${getTranslation('addMore', lang)}`,
-            `- ${getTranslation('modifyOrder', lang)}`,
-            `- ${getTranslation('confirmOrderBtn', lang)}`,
-            `- "clear" ${getTranslation('chatCleared', lang)}`
+            - ${getTranslation('addMore', lang)},
+            - ${getTranslation('modifyOrder', lang)},
+            - ${getTranslation('confirmOrderBtn', lang)},
+            - "clear" ${getTranslation('chatCleared', lang)}
         ];
     }
 
@@ -562,7 +513,7 @@ function processMessageLocally(message) {
             conversationState.name = message;
             conversationState.step = 'show_menu';
             return [
-                `${getTranslation('hello', lang)} ${message}!`,
+                ${getTranslation('hello', lang)} ${message}!,
                 getTranslation('menuTitle', lang),
                 ...showVisualMenu()
             ];
@@ -599,12 +550,6 @@ function processMessageLocally(message) {
                 return [modifyOrder(text)];
             }
             
-            // Handle special requests
-            if (text.includes('extra') || text.includes('less') || text.includes('no')) {
-                conversationState.specialRequests.push(text);
-                return [getTranslation('requestAdded', lang).replace('{request}', text)];
-            }
-            
             // Handle action buttons
             if (text === getTranslation('addMore', lang).toLowerCase()) {
                 return showVisualMenu();
@@ -634,10 +579,6 @@ function processMessageLocally(message) {
             if (conversationState.paymentMethod) {
                 conversationState.step = 'complete';
                 createConfetti();
-                
-                // Save order to Firebase
-                await saveOrderToFirebase();
-                
                 return [
                     `<div class="success-animation">
                         <svg class="checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52">
@@ -689,6 +630,9 @@ function processOrder(text) {
     
     return [getTranslation('notUnderstood', lang)];
 }
+
+// Improved order modification function
+
 
 // UI Functions
 function showVisualMenu() {
@@ -751,7 +695,7 @@ function showCurrentOrder() {
         return [getTranslation('emptyOrder', lang)];
     }
     
-    orderMessages.push(`<strong>${getTranslation('yourOrder', lang)}</strong>`);
+    orderMessages.push(<strong>${getTranslation('yourOrder', lang)}</strong>);
     
     let total = 0;
     conversationState.orders.forEach((item, i) => {
@@ -763,18 +707,10 @@ function showCurrentOrder() {
             </div>
         `);
         if (item.specialRequest) {
-            orderMessages.push(`<div style="padding-left:20px;font-size:0.9em;">${item.specialRequest}</div>`);
+            orderMessages.push(<div style="padding-left:20px;font-size:0.9em;">${item.specialRequest}</div>);
         }
         total += itemTotal;
     });
-    
-    // Show special requests if any
-    if (conversationState.specialRequests.length > 0) {
-        orderMessages.push(`<div><strong>${getTranslation('specialRequestPrompt', lang)}:</strong></div>`);
-        conversationState.specialRequests.forEach(request => {
-            orderMessages.push(`<div style="padding-left:20px;font-size:0.9em;">- ${request}</div>`);
-        });
-    }
     
     orderMessages.push(`
         <div class="order-total">
@@ -784,7 +720,7 @@ function showCurrentOrder() {
     `);
     
     if (conversationState.scheduledTime) {
-        orderMessages.push(`<div>🕒 ${conversationState.scheduledTime}</div>`);
+        orderMessages.push(<div>🕒 ${conversationState.scheduledTime}</div>);
     }
     
     // Add action buttons
@@ -894,7 +830,7 @@ function addBotMessage(text, type = 'normal') {
     if (!text) return;
     
     const div = document.createElement('div');
-    div.className = `message ${type === 'error' ? 'error-message' : 'bot-message'}`;
+    div.className = message ${type === 'error' ? 'error-message' : 'bot-message'};
     
     if (typeof text === 'string' && text.startsWith('<')) {
         div.innerHTML = text;
@@ -995,4 +931,3 @@ function modifyOrder(command) {
 
     return getTranslation('modifyError', lang);
 }
-
