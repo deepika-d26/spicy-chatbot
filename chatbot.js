@@ -1,3 +1,17 @@
+// Firebase Configuration - ADD YOUR OWN CONFIG HERE
+const firebaseConfig = {
+  apiKey: "YOUR_API_KEY",
+  authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
+  projectId: "YOUR_PROJECT_ID",
+  storageBucket: "YOUR_PROJECT_ID.appspot.com",
+  messagingSenderId: "YOUR_SENDER_ID",
+  appId: "YOUR_APP_ID"
+};
+
+// Initialize Firebase
+firebase.initializeApp(firebaseConfig);
+const db = firebase.firestore();
+
 // Configuration - UPDATE THIS TO YOUR AZURE FUNCTION URL
 const AZURE_FUNCTION_URL = 'https://spicychatbotfunction-bbfydebcfcf2b6er.centralindia-01.azurewebsites.net/api/HttpTrigger1deepi?';
 const BOT_SECRET_KEY = "CBrDk2c3vJHhkemq5zqAL16mBeMxfnHtqt149b3xzDeER4pK00JaJQQJ99BGACGhslBAArohAAABAZBS1HIj.9wV5SZIZ9QRw28dGUrPmfF048FxRwKCwmQGaU4C28WHCMMdtAY9AJQQJ99BGAC77bzfAArohAAABAZBS1u0y";
@@ -138,7 +152,8 @@ const translations = {
         clearChatConfirm: "Are you sure you want to clear the chat?",
         chatCleared: "Chat cleared. How can I help you today?",
         send: "Send",
-        spicyLevel: "Spice Level:"
+        spicyLevel: "Spice Level:",
+        dataSaved: "Your order has been saved successfully!"
     },
     hi: {
         welcome: "स्पाइसी डिलाइट्स में आपका स्वागत है! 🔥 कृपया शुरू करने के लिए अपना नाम बताएं।",
@@ -185,7 +200,8 @@ const translations = {
         clearChatConfirm: "क्या आप वाकई चैट साफ़ करना चाहते हैं?",
         chatCleared: "चैट साफ़ हो गई। आज मैं आपकी कैसे मदद कर सकता हूँ?",
         send: "भेजें",
-        spicyLevel: "मसाले का स्तर:"
+        spicyLevel: "मसाले का स्तर:",
+        dataSaved: "आपका ऑर्डर सफलतापूर्वक सहेजा गया है!"
     },
     es: {
         welcome: "¡Bienvenido a Spicy Delights! 🔥 Por favor, dinos tu nombre para comenzar.",
@@ -232,7 +248,8 @@ const translations = {
         clearChatConfirm: "¿Estás seguro de que quieres borrar el chat?",
         chatCleared: "Chat borrado. ¿Cómo puedo ayudarte hoy?",
         send: "Enviar",
-        spicyLevel: "Nivel de picante:"
+        spicyLevel: "Nivel de picante:",
+        dataSaved: "¡Tu pedido ha sido guardado exitosamente!"
     },
     kn: {
         welcome: "ಸ್ಪೈಸಿ ಡಿಲೈಟ್ಸ್‌ಗೆ ಸುಸ್ವಾಗತ! 🔥 ಪ್ರಾರಂಭಿಸಲು ದಯವಿಟ್ಟು ನಿಮ್ಮ ಹೆಸರನ್ನು ಹೇಳಿ.",
@@ -279,7 +296,8 @@ const translations = {
         clearChatConfirm: "ನೀವು ಚಾಟ್ ಅನ್ನು ಸ್ಪಷ್ಟವಾಗಿ ಮಾಡಲು ಖಚಿತವಾಗಿ ಬಯಸುವಿರಾ?",
         chatCleared: "ಚಾಟ್ ಸ್ಪಷ್ಟವಾಗಿದೆ. ನಾನು ಇಂದು ನಿಮಗೆ ಹೇಗೆ ಸಹಾಯ ಮಾಡಬಹುದು?",
         send: "ಕಳುಹಿಸು",
-        spicyLevel: "ಮಸಾಲೆ ಮಟ್ಟ:"
+        spicyLevel: "ಮಸಾಲೆ ಮಟ್ಟ:",
+        dataSaved: "ನಿಮ್ಮ ಆರ್ಡರ್ ಯಶಸ್ವಿಯಾಗಿ ಉಳಿಸಲ್ಪಟ್ಟಿದೆ!"
     }
 };
 
@@ -300,7 +318,9 @@ let conversationState = {
     language: 'en',
     scheduledTime: null,
     recurringOrder: false,
-    paymentMethod: null
+    paymentMethod: null,
+    specialRequests: [],
+    timestamp: null
 };
 
 // Initialize voice recognition
@@ -366,7 +386,9 @@ clearChatBtn.addEventListener('click', () => {
             language: conversationState.language,
             scheduledTime: null,
             recurringOrder: false,
-            paymentMethod: null
+            paymentMethod: null,
+            specialRequests: [],
+            timestamp: null
         };
         addBotMessage(getTranslation('chatCleared', conversationState.language));
         setTimeout(() => {
@@ -428,6 +450,31 @@ setTimeout(() => {
     setInterval(createSpicyAnimation, 10000);
 }, 500);
 
+// Save order to Firebase
+async function saveOrderToFirebase() {
+    try {
+        conversationState.timestamp = firebase.firestore.FieldValue.serverTimestamp();
+        
+        await db.collection('orders').add({
+            ...conversationState,
+            totalAmount: calculateTotal(),
+            status: 'completed'
+        });
+        
+        addBotMessage(getTranslation('dataSaved', conversationState.language));
+    } catch (error) {
+        console.error('Error saving order to Firebase:', error);
+        addBotMessage(getTranslation('error', conversationState.language));
+    }
+}
+
+// Calculate total order amount
+function calculateTotal() {
+    return conversationState.orders.reduce((total, item) => {
+        return total + (item.price * item.quantity);
+    }, 0);
+}
+
 // Main message processing
 async function sendMessage() {
     const message = userInput.value.trim();
@@ -487,7 +534,9 @@ function processMessageLocally(message) {
             language: conversationState.language,
             scheduledTime: null,
             recurringOrder: false,
-            paymentMethod: null
+            paymentMethod: null,
+            specialRequests: [],
+            timestamp: null
         };
         return [getTranslation('chatCleared', lang)];
     }
@@ -550,6 +599,12 @@ function processMessageLocally(message) {
                 return [modifyOrder(text)];
             }
             
+            // Handle special requests
+            if (text.includes('extra') || text.includes('less') || text.includes('no')) {
+                conversationState.specialRequests.push(text);
+                return [getTranslation('requestAdded', lang).replace('{request}', text)];
+            }
+            
             // Handle action buttons
             if (text === getTranslation('addMore', lang).toLowerCase()) {
                 return showVisualMenu();
@@ -579,6 +634,10 @@ function processMessageLocally(message) {
             if (conversationState.paymentMethod) {
                 conversationState.step = 'complete';
                 createConfetti();
+                
+                // Save order to Firebase
+                await saveOrderToFirebase();
+                
                 return [
                     `<div class="success-animation">
                         <svg class="checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52">
@@ -630,9 +689,6 @@ function processOrder(text) {
     
     return [getTranslation('notUnderstood', lang)];
 }
-
-// Improved order modification function
-
 
 // UI Functions
 function showVisualMenu() {
@@ -711,6 +767,14 @@ function showCurrentOrder() {
         }
         total += itemTotal;
     });
+    
+    // Show special requests if any
+    if (conversationState.specialRequests.length > 0) {
+        orderMessages.push(`<div><strong>${getTranslation('specialRequestPrompt', lang)}:</strong></div>`);
+        conversationState.specialRequests.forEach(request => {
+            orderMessages.push(`<div style="padding-left:20px;font-size:0.9em;">- ${request}</div>`);
+        });
+    }
     
     orderMessages.push(`
         <div class="order-total">
