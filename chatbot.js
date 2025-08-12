@@ -1,3 +1,15 @@
+const firebaseConfig = {
+  apiKey: "AIzaSyDYmGp9Mha7CzCC-kFIeIqGy1_lscZMZOs",
+  authDomain: "spicy-food-order-assistant.firebaseapp.com",
+  projectId: "spicy-food-order-assistant",
+  storageBucket: "spicy-food-order-assistant.firebasestorage.app",
+  messagingSenderId: "894408741484",
+  appId: "1:894408741484:web:130641154b60f9376e7e49"
+};
+
+// Initialize Firebase
+firebase.initializeApp(firebaseConfig);
+const db = firebase.firestore(); // This is your database!
 // Configuration - UPDATE THIS TO YOUR AZURE FUNCTION URL
 const AZURE_FUNCTION_URL = 'https://spicychatbotfunction-bbfydebcfcf2b6er.centralindia-01.azurewebsites.net/api/HttpTrigger1deepi?';
 const BOT_SECRET_KEY = "CBrDk2c3vJHhkemq5zqAL16mBeMxfnHtqt149b3xzDeER4pK00JaJQQJ99BGACGhslBAArohAAABAZBS1HIj.9wV5SZIZ9QRw28dGUrPmfF048FxRwKCwmQGaU4C28WHCMMdtAY9AJQQJ99BGAC77bzfAArohAAABAZBS1u0y";
@@ -931,4 +943,5 @@ function modifyOrder(command) {
 
     return getTranslation('modifyError', lang);
 }
+
 
