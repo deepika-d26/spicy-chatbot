@@ -695,7 +695,7 @@ function showCurrentOrder() {
         return [getTranslation('emptyOrder', lang)];
     }
     
-    orderMessages.push(<strong>${getTranslation('yourOrder', lang)}</strong>);
+    orderMessages.push(`<strong>${getTranslation('yourOrder', lang)}</strong>`);
     
     let total = 0;
     conversationState.orders.forEach((item, i) => {
@@ -931,4 +931,5 @@ function modifyOrder(command) {
 
     return getTranslation('modifyError', lang);
 }
+
 
