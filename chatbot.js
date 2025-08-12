@@ -94,7 +94,7 @@ const menuItems = {
 // Translations
 const translations = {
     en: {
-        welcome: "Welcome to Spicy Delights! 🔥 Please tell us your name to begin.",
+        welcome: "Welcome to Spicy Delights! 🔥 .",
         namePrompt: "What's your name?",
         menuTitle: "Our Spicy Menu 🌶",
         orderPrompt: "What would you like to order today?",
@@ -931,3 +931,4 @@ function modifyOrder(command) {
 
     return getTranslation('modifyError', lang);
 }
+
