@@ -381,7 +381,7 @@ function createSpicyAnimation() {
         setTimeout(() => {
             const chili = document.createElement('div');
             chili.className = 'chili-pepper';
-            chili.style.left = `${Math.random() * 100}%`;
+            chili.style.left = ${Math.random() * 100}%;
             chili.style.animationDuration = ${5 + Math.random() * 5}s;
             chili.style.opacity = Math.random() * 0.7 + 0.3;
             chili.style.width = ${20 + Math.random() * 20}px;
@@ -695,7 +695,7 @@ function showCurrentOrder() {
         return [getTranslation('emptyOrder', lang)];
     }
     
-    orderMessages.push(`<strong>${getTranslation('yourOrder', lang)}</strong>`);
+    orderMessages.push(<strong>${getTranslation('yourOrder', lang)}</strong>);
     
     let total = 0;
     conversationState.orders.forEach((item, i) => {
@@ -931,5 +931,3 @@ function modifyOrder(command) {
 
     return getTranslation('modifyError', lang);
 }
-
-
