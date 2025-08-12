@@ -943,3 +943,4 @@ function modifyOrder(command) {
 
     return getTranslation('modifyError', lang);
 }
+
