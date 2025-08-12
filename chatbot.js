@@ -1,3 +1,15 @@
+const firebaseConfig = {
+  apiKey: "AIzaSyDYmGp9Mha7CzCC-kFIeIqGy1_lscZMZOs",
+  authDomain: "spicy-food-order-assistant.firebaseapp.com",
+  projectId: "spicy-food-order-assistant",
+  storageBucket: "spicy-food-order-assistant.firebasestorage.app",
+  messagingSenderId: "894408741484",
+  appId: "1:894408741484:web:130641154b60f9376e7e49"
+};
+
+// Initialize Firebase
+firebase.initializeApp(firebaseConfig);
+const db = firebase.firestore(); // This is your database!
 // Configuration - UPDATE THIS TO YOUR AZURE FUNCTION URL
 const AZURE_FUNCTION_URL = 'https://spicychatbotfunction-bbfydebcfcf2b6er.centralindia-01.azurewebsites.net/api/HttpTrigger1deepi?';
 const BOT_SECRET_KEY = "CBrDk2c3vJHhkemq5zqAL16mBeMxfnHtqt149b3xzDeER4pK00JaJQQJ99BGACGhslBAArohAAABAZBS1HIj.9wV5SZIZ9QRw28dGUrPmfF048FxRwKCwmQGaU4C28WHCMMdtAY9AJQQJ99BGAC77bzfAArohAAABAZBS1u0y";
@@ -381,10 +393,10 @@ function createSpicyAnimation() {
         setTimeout(() => {
             const chili = document.createElement('div');
             chili.className = 'chili-pepper';
-            chili.style.left = ${Math.random() * 100}%;
-            chili.style.animationDuration = ${5 + Math.random() * 5}s;
+            chili.style.left = `${Math.random() * 100}%`;
+            chili.style.animationDuration = `${5 + Math.random() * 5}s`;
             chili.style.opacity = Math.random() * 0.7 + 0.3;
-            chili.style.width = ${20 + Math.random() * 20}px;
+            chili.style.width = `${20 + Math.random() * 20}px`;
             chili.style.height = chili.style.width;
             spicyAnimation.appendChild(chili);
             
@@ -401,11 +413,11 @@ function createConfetti() {
     for (let i = 0; i < 50; i++) {
         const confetti = document.createElement('div');
         confetti.className = 'confetti';
-        confetti.style.left = ${Math.random() * 100}%;
-        confetti.style.backgroundColor = hsl(${Math.random() * 60 + 0}, 100%, 50%);
-        confetti.style.animationDuration = ${1 + Math.random() * 2}s;
-        confetti.style.animationDelay = ${Math.random() * 0.5}s;
-        confetti.style.width = ${5 + Math.random() * 10}px;
+        confetti.style.left = `${Math.random() * 100}%`;
+        confetti.style.backgroundColor = `hsl(${Math.random() * 60 + 0}, 100%, 50%)`;
+        confetti.style.animationDuration = `${1 + Math.random() * 2}s`;
+        confetti.style.animationDelay = `${Math.random() * 0.5}s`;
+        confetti.style.width = `${5 + Math.random() * 10}px`;
         confetti.style.height = confetti.style.width;
         spicyAnimation.appendChild(confetti);
         
@@ -496,10 +508,10 @@ function processMessageLocally(message) {
     if (text === 'help') {
         return [
             getTranslation('whatNext', lang),
-            - ${getTranslation('addMore', lang)},
-            - ${getTranslation('modifyOrder', lang)},
-            - ${getTranslation('confirmOrderBtn', lang)},
-            - "clear" ${getTranslation('chatCleared', lang)}
+            `- ${getTranslation('addMore', lang)}`,
+            `- ${getTranslation('modifyOrder', lang)}`,
+            `- ${getTranslation('confirmOrderBtn', lang)}`,
+            `- "clear" ${getTranslation('chatCleared', lang)}`
         ];
     }
 
@@ -513,7 +525,7 @@ function processMessageLocally(message) {
             conversationState.name = message;
             conversationState.step = 'show_menu';
             return [
-                ${getTranslation('hello', lang)} ${message}!,
+                `${getTranslation('hello', lang)} ${message}!`,
                 getTranslation('menuTitle', lang),
                 ...showVisualMenu()
             ];
@@ -695,7 +707,7 @@ function showCurrentOrder() {
         return [getTranslation('emptyOrder', lang)];
     }
     
-    orderMessages.push(<strong>${getTranslation('yourOrder', lang)}</strong>);
+    orderMessages.push(`<strong>${getTranslation('yourOrder', lang)}</strong>`);
     
     let total = 0;
     conversationState.orders.forEach((item, i) => {
@@ -707,7 +719,7 @@ function showCurrentOrder() {
             </div>
         `);
         if (item.specialRequest) {
-            orderMessages.push(<div style="padding-left:20px;font-size:0.9em;">${item.specialRequest}</div>);
+            orderMessages.push(`<div style="padding-left:20px;font-size:0.9em;">${item.specialRequest}</div>`);
         }
         total += itemTotal;
     });
@@ -720,7 +732,7 @@ function showCurrentOrder() {
     `);
     
     if (conversationState.scheduledTime) {
-        orderMessages.push(<div>🕒 ${conversationState.scheduledTime}</div>);
+        orderMessages.push(`<div>🕒 ${conversationState.scheduledTime}</div>`);
     }
     
     // Add action buttons
@@ -830,7 +842,7 @@ function addBotMessage(text, type = 'normal') {
     if (!text) return;
     
     const div = document.createElement('div');
-    div.className = message ${type === 'error' ? 'error-message' : 'bot-message'};
+    div.className = `message ${type === 'error' ? 'error-message' : 'bot-message'}`;
     
     if (typeof text === 'string' && text.startsWith('<')) {
         div.innerHTML = text;
@@ -931,3 +943,4 @@ function modifyOrder(command) {
 
     return getTranslation('modifyError', lang);
 }
+
